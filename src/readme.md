@@ -6,20 +6,20 @@
 
 ## Perquè aprendre un nou llenguatge de programació?
 
-L'objectiu d'aquest tutorial és portar-vos a un lloc on pugueu llegir i escriure 
+L'objectiu d'aquest tutorial és portar-vos a un punt on pugueu llegir i escriure 
 suficient Rust per apreciar plenament els excel·lents recursos d'aprenentatge 
 disponibles en línia, en particular l'anomenat [The Book](https://doc.rust-lang.org/stable/book/).
-És una oportunitat per _provar abans que comprar_, i obtenir suficients sensacions de
+És una oportunitat per _provar abans de comprar_, i obtenir suficients sensacions
 sobre la força del llenguatge amb el que es vol aprofundir més.
 
 Com podria haver dit Einstein, "Tan dolç com sigua possible, però no massa dolç". Hi ha un un 
 munt de coses noves per aprendre ací, i és prou diferent com per requerir alguna reordenació dels
-seus mobles mentals. Per 'dolça' vull dir que les característiques són presentades pràcticament 
+nostres mobles mentals. Per 'dolça' vull dir que les característiques són presentades pràcticament 
 amb exemples; a mesura que anem trobant dificultats, espere mostrar com Rust resol aquests problemes. 
 És important entendre els problemes abans que les solucions tinguen sentit. Per dir-ho en amb una mica
-més de floritura, anem d'excursió a un país muntanyós i assenyalaré algunes formacions rocoses interessants
-pel camí, amb unes poques lliçons sobre geologia. Hi haurà alguna pujada però la vista serà inspiradora; 
-La comunitat és inusualment agradable i està feliç podent ajudar. Existeixen els [Forums d'usuaris Rust](https://users.rust-lang.org/) 
+més de floritura, anem d'excursió a un país muntanyós i assenyalarem algunes formacions rocoses interessants
+pel camí, sabent sols unes poques lliçons sobre geologia. Hi haurà alguna pujada però la vista serà inspiradora; 
+La comunitat és inusualment agradable i està molt contenta podent ajudar. Existeixen també els [Forums d'usuaris Rust](https://users.rust-lang.org/) 
 i una activa vida a [Reddit](https://www.reddit.com/r/rust/) que està inusualment ben moderada.
 Les xarxes socials són també un bon recurs si vos trobeu amb una pregunta
 específica: 
@@ -29,21 +29,21 @@ específica:
     - [GitHub](https://github.com/rust-lang)
 
 En primer lloc, per què aprendre un nou llenguatge de programació? És una inversió 
-de temps i energia i això necessita alguna justificació. Fins i tot si no caieu 
-immediatament en un treball genial utilitzant aquest llenguatge, això et fa estirar els 
-músculs mentals i et fa un millor programador. Això sembla un tipus pobre de retorn de la
-inversió, però si no esteu aprenent alguna cosa _genuïnament_ nova tot el temps, llavors 
-t'estancaràs i seràs com la persona que té deu anys d'experiència en fer el mateix una 
+de temps i energia i això necessita alguna justificació. Fins i tot si no vos toca 
+immediatament en un treball genial utilitzant aquest llenguatge, això ens fa estirar els 
+músculs mentals i ens fa un millor programador. Això sembla un tipus pobre de retorn de la
+inversió, però si no esteu aprenent alguna cosa _genuïnament_ nova tot el temps, llavors vos 
+estancareu i sereu com la persona que té deu anys d'experiència en fer la mateixa cosa una 
 vegada i una altra.
 
 ## On brilla Rust
 
 Rust és un llenguatge de programació de sistemes estàtic i fortament tipat. _Estàtic_ 
-significa que tots els tipus es coneixen en temps de compilació, _fortament_ significa
-que aquests tipus estan dissenyats per dificultar l'escriptura de programes incorrectes.
-Un recull d'èxit vol dir que teniu una garantia de correcció molt millor que amb un 
-llenguatge "cowboy" com C. _Sistemes_ significa generar el millor codi màquina possible
-amb total control d'ús de memòria. Per tant, els usos són molt durs: sistemes operatius, 
+significa que tots els tipus els coneixen en temps de compilació, _fortament_ significa
+que aquests tipus estan dissenyats per dificultar l'escriptura de programes incorrectes,
+donant una garantia de correcció molt millor que amb un  llenguatge "cowboy" com C.
+_Sistemes_ significa generar el millor codi màquina possible amb total control d'ús de 
+la memòria. Per tant, els usos que pot tindre el llenguatge són molt durs: sistemes operatius, 
 controladors de dispositius i sistemes encastats que potser ni tan sols tenen sistema 
 operatiu. No obstant això, és en realitat, un llenguatge molt agradable per escriure codi 
 d'aplicacins normals també.
@@ -73,7 +73,7 @@ rustc $1.rs && ./$1
 ## Creant
 
 Aquest tutorial assumeix que tens Rust instal·lat localment. Afortunadament això és 
-[molt senzill](https://www.rust-lang.org/en-US/downloads.html).
+[molt senzill](https://www.rust-lang.org/en-US/downloads.html) si no és el cas.
 
 ```
 $ curl https://sh.rustup.rs -sSf | sh
@@ -107,7 +107,7 @@ de progrmar en Python és bo, siga quina siga la llengua. Ell comenta que aprend
 També tenim bons consells del mestre Yoga i de les arts marcials com el tai-txi; sentiu la tensió,
 però no us esforceu massa. Aquí no estarem exercitant un múscul tonto.
 
-M'agradaria també agraïs a Steve Donovan per la seva feina de resum i concreció en aquest bon manual
+M'agradaria també agrair a Steve Donovan per la seva feina de resum i concreció en aquest bon manual
 d'iniciació al Rust.
 
 Steve Donovan © 2017-2018 MIT license version 0.4.0
