@@ -58,8 +58,8 @@ Els principis unificadors darrere de Rust són:
 Hi ha un ecosistema de ràpid creixement de llibreries disponibles a través de Cargo però
 aquí ens concentrarem en els principis bàsics del llenguatge aprenent a utilitzar la 
 llibreria estàndard. El meu consell és escriure _lots de petits programes_, per tant, 
-aprendre a utilitzar 'rustc' directament és una habilitat bàsica. A l'hora de fer els 
-exemples d'aquest tutorial he definit un petit script anomenat 'rrun' que fa una 
+aprendre a utilitzar ```rustc``` directament és una habilitat bàsica. A l'hora de fer els 
+exemples d'aquest tutorial he definit un petit script anomenat ```rrun``` que fa una 
 compilació i executa el resultat:
 
 ```
