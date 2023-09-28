@@ -21,8 +21,12 @@ més de floritura, anem d'excursió a un país muntanyós i assenyalaré algunes
 pel camí, amb unes poques lliçons sobre geologia. Hi haurà alguna pujada però la vista serà inspiradora; 
 La comunitat és inusualment agradable i està feliç podent ajudar. Existeixen els [Forums d'usuaris Rust](https://users.rust-lang.org/) 
 i una activa vida a [Reddit](https://www.reddit.com/r/rust/) que està inusualment ben moderada.
-Les [FAQ](https://www.rust-lang.org/en-US/faq.html) són també un bon recurs si vos trobeu amb una pregunta
-específica.
+Les xarxes socials són també un bon recurs si vos trobeu amb una pregunta
+específica: 
+    - [Twitter](https://twitter.com/rustlang)
+    - [YouTube](https://www.youtube.com/channel/UCaYhcUwRBNscFNUKTjgPFiA)
+    - [Discord](https://discord.com/invite/rust-lang)
+    - [GitHub](https://github.com/rust-lang)
 
 En primer lloc, per què aprendre un nou llenguatge de programació? És una inversió 
 de temps i energia i això necessita alguna justificació. Fins i tot si no caieu 
