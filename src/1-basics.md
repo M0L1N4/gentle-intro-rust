@@ -2,8 +2,8 @@
 
 ## Hello, World!
 
-The original purpose of "hello world", ever since the first C version was written,
-was to test the compiler and run an actual program.
+El propòsit original del "hello world!", des que la primera versió de C fou escrita,
+era la de provar el compilador i executar un programa real.
 
 ```rust
 // hello.rs
@@ -18,15 +18,15 @@ $ ./hello
 Hello, World!
 ```
 
-Rust is a curly-braces language with semicolons, C++-style comments and a `main`
-function - so far, so familiar.  The exclamation mark indicates that this is a
-_macro_ call. For C++ programmers, this can be a turn-off, since they are used to
-seriously stupid C macros - but I can assure you that these macros are more
-capable and sane.
+Rust és un llenguatge de claudators amb punt i coma, comentaris a l'estil C++ i 
+una funció `main` - tan i tan familiar. El signe d'exclamació indica que es tracta
+d'una crida a una _macro_. Pels programadors de C++, això pot no agradar-los, ja 
+que estan acostumats a macros de C seriosament estúpides, però vos puc assegurar que
+aquestes macros són més capaces i sanes.
 
-For anybody else,
-it's probably "Great, now I have to remember when to say bang!".  However, the
-compiler is unusually helpful; if you leave out that exclamation, you get:
+Per a qualsevol altra persona, probablement siga "Genial, ara he de recordar quan dir 
+[bang!](https://en.wikipedia.org/wiki/Exclamation_mark)". No obstant això, el compilador 
+és inusualment útil; Si deixeu de banda aquesta exclamació, obtindreu:
 
 ```
 error[E0425]: unresolved name `println`
@@ -37,6 +37,12 @@ error[E0425]: unresolved name `println`
 
 ```
 
+Aprendre un nou llenguatge és sentir-se còmode amb els seus errors. Proveu de veure el 
+compilador com un ajudant estricte però simpàtic, en lloc d'un ordinador _cridant-te, 
+
+
+
+perquè ets anant a veure molta tinta vermella al principi.
 Learning a language means getting comfortable with its errors. Try to see the compiler
 as a strict but friendly helper rather than a computer _shouting_ at you, because you are
 going to see a lot of red ink in the beginning.  It's much better for the compiler
