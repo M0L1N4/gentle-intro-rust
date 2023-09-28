@@ -85,7 +85,7 @@ El viatge de més de mil kilòmetres comença amb un pas, i aquest primer pas é
 nova versió estable apareix, només hem d'escriure 'rustup update' per actualitzar-la. S'obrirà
 'Rustup Doc' la documentació sense connexió al nostre navegador.
 
-Probablement ja tindreu un editor que vos agrade, i [suport bàsic per Rust] (https://areweideyet.com/)
+Probablement ja tindreu un editor que vos agrade, i [suport bàsic per Rust](https://areweideyet.com/)
 això és bo. Vos suggerisc que comenceu amb el ressaltat de sintaxi bàsica al principi, i que
 treballeu a mesura que els vostres programes es facin més grans.
 
