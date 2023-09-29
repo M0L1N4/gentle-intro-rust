@@ -38,17 +38,11 @@ error[E0425]: unresolved name `println`
 ```
 
 Aprendre un nou llenguatge és sentir-se còmode amb els seus errors. Proveu de veure el 
-compilador com un ajudant estricte però simpàtic, en lloc d'un ordinador _cridant-te, 
+compilador com un ajudant estricte però simpàtic, en lloc d'un ordinador _cridant-te_, 
+perquè aneu a veure molta tinta vermella a la pantalla al principi. És molt millor pel
+compilador per atrapar-vos, que no pas que el vostre programa explote davant cap persona.
 
-
-
-perquè ets anant a veure molta tinta vermella al principi.
-Learning a language means getting comfortable with its errors. Try to see the compiler
-as a strict but friendly helper rather than a computer _shouting_ at you, because you are
-going to see a lot of red ink in the beginning.  It's much better for the compiler
-to catch you out than for your program to blow up in front of actual humans.
-
-The next step is to introduce a _variable_:
+El següent pas és introduïs una _variable_:
 
 ```rust
 // let1.rs
@@ -59,9 +53,10 @@ fn main() {
 
 ```
 
-Spelling mistakes are _compile_ errors, not runtime errors like with dynamic languages
-like Python or JavaScript.  This will save you a lot of stress later! And if I wrote
- 'answr' instead of 'answer', the compiler is actually _nice_ about it:
+Els errors ortogràfics són errors de _compilació_, no errors en temps d'execució com 
+passa amb els llenguatges dinàmics com Python o JavaScript. Això vos estalviarà molt 
+d'estrès més endavant. I si escriviu 'answr' en comptes de 'answer', el compilador és
+en realitat _amable_ amb això:
 
 ```
 4 |     println!("Hello {}", answr);
@@ -69,11 +64,12 @@ like Python or JavaScript.  This will save you a lot of stress later! And if I w
 
 ```
 
-The `println!` macro takes a [format string](https://doc.rust-lang.org/std/fmt/index.html)
-and some values; it's very similar to the formatting used by Python 3.
+La macro `println!` agafa un [format de cadena] (https://doc.rust-lang.org/std/fmt/index.html)
+i alguns valors; és molt similar al format utilitzat per Python 3.
 
-Another very useful macro is `assert_eq!`. This is the workhorse of testing
-in Rust; you _assert_ that two things must be equal, and if not, _panic_.
+Una altra macro molt útil és `assert_eq!`. Aquest és el cavall de batalla de
+les proves en Rust; El vostre _assert_ mira que dues coses siguen iguals, i 
+si no, _panic_.
 
 ```rust
 // let2.rs
