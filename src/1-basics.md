@@ -79,7 +79,7 @@ fn main() {
 }
 ```
 
-Which won't produce any output. But change 42 to 40:
+Cosa que no produirà cap sortida. Però canvia 42 a 40:
 
 ```
 thread 'main' panicked at
@@ -87,11 +87,11 @@ thread 'main' panicked at
 let2.rs:4
 note: Run with `RUST_BACKTRACE=1` for a backtrace.
 ```
-And that's our first _runtime error_ in Rust.
+I aquest ha sigut el nostre primer _runtime error_ en Rust.
 
-## Looping and Ifing
+## Buclejant i condicionant
 
-Anything interesting can be done more than once:
+Qualsevol cosa interessant es pot fer més d'una vegada:
 
 ```rust
 // for1.rs
@@ -102,59 +102,59 @@ fn main() {
 }
 ```
 
-The _range_ is not inclusive, so `i` goes from 0 to 4. This is convenient in a
-language which _indexes_ things like arrays from 0.
+El _bucle_ no es inclusiu, així que `i` va des de 0 fins a 4. Això és convenient en un 
+llenguatge de programació que _indexa_ coses com _arrais_ de 0.
 
-And interesting things have to be done _conditionally_:
+I coses ben interessants han estat fetes amb _condicionants_:
 
 ```rust
 // for2.rs
 fn main() {
     for i in 0..5 {
         if i % 2 == 0 {
-            println!("even {}", i);
+            println!("parell {}", i);
         } else {
-            println!("odd {}", i);
+            println!("imparell {}", i);
         }
     }
 }
 ```
 
 ```
-even 0
-odd 1
-even 2
-odd 3
-even 4
+parell 0
+imparell 1
+parell 2
+imparell 3
+parell 4
 ```
 
-`i % 2` is zero if 2 can divide into `i` cleanly; Rust uses C-style operators.
-There are _no_ brackets around the condition, just like in Go, but
-you _must_ use curly brackets around the block.
+`i % 2` és zero si 2 pot dividir-se entre `i` de manera neta; Rust usa l'estil d'operadors de C.
+Hi ha _no_ claudàtors al voltant de la condició, igual que en Go, però s'han d'utilitzar 
+claus al voltant del bloc.
 
-This does the same, written in a more interesting way:
+Aquest codi fa el mateix, però escrit d'una manera més interessant:
 
 ```rust
 // for3.rs
 fn main() {
     for i in 0..5 {
-        let even_odd = if i % 2 == 0 {"even"} else {"odd"};
-        println!("{} {}", even_odd, i);
+        let parell_senar = if i % 2 == 0 {"parell"} else {"imparell"};
+        println!("{} {}", parell_senar, i);
     }
 }
 ```
 
-Traditionally, programming languages have _statements_ (like `if`) and
-_expressions_ (like `1+i`). In Rust, nearly everything has a value and can
-be an expression.  The seriously ugly C 'ternary operator' `i % 2 == 0 ? "even" : "odd"`
-is not needed.
+Tradicionalment, els llenguatges de programació tenen _sentències_ 
+(com `if`) i _expressions_ (com ara `1+i`). En Rust, gairebé tot té
+un valor i pot ser una expressió. El molt lleig 'operador ternari' 
+de C 'i % 2 == 0? "parell" : "imparell"' no és necessàri.
 
-Note that there aren't any semi-colons in those blocks!
+Tingueu en compte que no hi ha punt i coma en aquests blocs!
 
-## Adding Things Up
+## Afegint cosetes
 
-Computers are very good at arithmetic. Here is a first attempt at adding all
-the numbers from 0 to 4:
+Els ordinadors són molt bons en aritmètica. Ací teniu un primer intent 
+d'afegir tots els números del 0 al 4:
 
 ```rust
 // add1.rs
@@ -167,7 +167,7 @@ fn main() {
 }
 ```
 
-But it fails to compile:
+Però falla en compilar-lo:
 
 ```
 error[E0384]: re-assignment of immutable variable `sum`
@@ -180,9 +180,9 @@ error[E0384]: re-assignment of immutable variable `sum`
 
 ```
 
-'Immutable'? A variable that cannot _vary_?  `let` variables by default can only
-be assigned a value when declared. Adding the magic word `mut` (_please_ make
-this variable mutable) does the trick:
+'Immutable'? Una variable no pot _variar_?  Les variables `let` per defecte
+només poden tindre un valor quan són declarades. Afegint la màgica paraula de
+`mut` (_per favor_ fes aquesta variable mutable), aconseguim el truc que necessitàvem:
 
 ```rust
 // add2.rs
@@ -195,27 +195,26 @@ fn main() {
 }
 ```
 
-This can be puzzling when coming from other languages, where variables can be
-re-written by default. What makes something a 'variable' is that it gets assigned
-a computed value at run-time - it is not a _constant_.
-It is also how the word is used in mathematics, like when we say
-'let n be the largest number in set S'.
+Això pot semblar desconcertant quan es prové d'altres llengües, on les variables 
+poden ser reescrites per defecte. El que fa que una cosa sigui una "variable" és 
+que se li assigna un valor calculat en temps d'execució - no és una _constant_. És 
+també com s'utilitza la paraula en matemàtiques, com quan diem 'que n sigui el nombre
+més gran en el conjunt S'.
 
-There is a reason for declaring variables to be _read-only_ by default. In a larger
-program, it gets hard to track where writes are taking place. So Rust makes things
-like mutability ('write-ability') explicit. There's a lot of cleverness in the
-language, but it tries not to hide anything.
+Hi ha una raó per declarar que les variables siguen _read-only_ per defecte. En un
+programa més llarg, es fa difícil fer un seguiment d'on tenen lloc les escriptures.
+Així que Rust fa coses com la mutabilitat ('capacitat d'escriptura') explícita. Hi 
+ha molta intel·ligència en el llenguatge, però intenta no amagar res.
 
-Rust is both statically-typed and strongly-typed - these are often confused, but
-think of C (statically but weakly typed) and Python (dynamically but strongly typed).
-In static types the type is known at compile time, and dynamic types are only known
-at run time.
+Rust és alhora estàtic i fortament tipat: sovint es confonen, però penseu en C 
+(estàtic) i Python (dinàmic). En els tipus estàtics el tipus es coneixen en temps
+de compilació, i els dinàmics només es coneixen els tipus en temps d'execució.
 
-At the moment, however, it feels like Rust is _hiding_ those types from you. What
-exactly is the type of `i`?  The compiler can work it out, starting with 0,
-with _type inference_, and comes up with `i32` (four byte signed integer.)
+De moment, però, sembla que Rust està _amagant_ aquests tipus. Què és exactament el
+tipus de `i`? El compilador pot treballar, començant per 0, amb _type inference_, i
+apareixer amb `i32` ([el tipus sencer signat amb quatre bytes](https://runebook.dev/es/docs/rust/std/primitive.i32)).
 
-Let's make exactly one change - turn that `0` into `0.0`. Then we get errors:
+Anem a fer exactament un canvi - canvia el `0` per `0.0`. Llavors obtindrem errors:
 
 ```
 error[E0277]: the trait bound `{float}: std::ops::AddAssign<{integer}>` is not satisfied
@@ -227,16 +226,17 @@ error[E0277]: the trait bound `{float}: std::ops::AddAssign<{integer}>` is not s
 
 ```
 
-Ok, so the honeymoon is over: what does this mean? Each operator (like `+=`) corresponds
-to a _trait_, which is like an abstract interface that must be implemented for each concrete type.
-We'll deal with traits in detail later, but here all you need to know is that
-`AddAssign` is the name of the trait implementing the `+=` operator, and the error is saying
-that floating point numbers do not implement this operator for integers. (The full list of
-operator traits is [here](https://doc.rust-lang.org/std/ops/index.html).)
+D'acord, així que la lluna de mel s'ha acabat: què vol dir això? Cada operador (com `+=`) 
+correspon a un _trait_, que és com una interfície abstracta que s'ha d'implementar per a 
+cada tipus concret. Més endavant tractarem detalladament els _traits_, però aquí tot el que 
+heu de saber és que `AddAssign` és el nom del tret que implementa l'operador `+=`, i 
+l'error diu que els nombres en coma flotant no implementen aquest operador per a nombres sencers.
+(El llistat complet d'operadors _trait_ el podeu trobar [ací](https://doc.rust-lang.org/std/ops/index.html).)
 
-Again, Rust likes to be explicit - it will not silently convert that integer into a float for you.
+Una vegada més, a Rust li agrada ser explícit: no convertirà silenciosament aquest sencer en un
+número real per a nosaltres.
 
-We have to _cast_ that value to a floating-point value explicitly.
+Tindrem que fer-li _cast_ del valor a número sencer (_float_) explícitament.
 
 ```rust
 // add3.rs
@@ -249,15 +249,15 @@ fn main() {
 }
 ```
 
-## Function Types are Explicit
+## Els tipus de les funcions són explícits
 
-_Functions_ are one place where the compiler will not work out types for you.
-And this in fact was a deliberate decision, since languages like Haskell have
-such powerful type inference that there are hardly any explicit type names. It's
-actually good Haskell style to put in explicit type signatures for functions.
-Rust requires this always.
+_Functions_ són un lloc on el compilador no treballarà els tipus per nosaltres.
+I això, de fet, va ser una decisió deliberada, ja que llenguatges com el Haskell 
+amb una inferència de tipus tan potent, amb prou feines hi ha noms de tipus explícits.
+És realment el bon estil Haskell de posar explícitament el tipus de signatures per 
+les funcions el que ha fet inspirar a Rust per usar-lo sempre.
 
-Here is a simple user-defined function:
+Acñi trobem una simple funció definida per l'usuari:
 
 ```rust
 // fun1.rs
@@ -272,12 +272,11 @@ fn main() {
 }
 ```
 
-Rust goes back to an
-older style of argument declaration, where the type follows the name. This is
-how it was done in Algol-derived languages like Pascal.
+Rust torna a un estil més antic de declaració d'arguments, on el tipus segueix 
+el nom. Això és com es feia en llenguatges derivats de l'Algol o com el Pascal.
 
-Again, no integer-to-float conversions - if you replace the `2.0` with `2` then we
-get a clear error:
+De nou, no hi ha conversions de sencer a real: si substituim `2.0` per `2`, 
+llavors obtenim un error clar:
 
 ```
 8 |     let res = sqr(2);
@@ -285,8 +284,8 @@ get a clear error:
   |
 ```
 
-You will actually rarely see functions written using a `return` statement. More
-often, it will look like this:
+De fet, poques vegades veurem funcions escrites mitjançant una instrucció 
+`return`. Més Sovint, s'assemblarà a la següent:
 
 ```rust
 fn sqr(x: f64) -> f64 {
@@ -294,11 +293,11 @@ fn sqr(x: f64) -> f64 {
 }
 ```
 
-This is because the body of the function (inside `{}`) has the value of its
-last expression, just like with if-as-an-expression.
+Això es deu al fet que el cos de la funció (dins de `{}`) té el valor de la
+seva última expressió, igual que amb if-as-an-expression.
 
-Since semicolons are inserted semi-automatically by human fingers, you might add it
-here and get the following error:
+Atès que el punt i coma s'insereix semi-automàticament pels dits humans, podeu
+afegir-lo aquí i obtindreu el següent error:
 
 ```
   |
@@ -315,15 +314,15 @@ help: consider removing this semicolon:
 
 ```
 
-The `()` type is the empty type, nada, `void`, zilch, nothing. Everything in Rust
-has a value, but sometimes it's just nothing.  The compiler knows this is
-a common mistake, and actually _helps_ you.  (Anybody who has spent time with a
-C++ compiler will know how _damn unusual_ this is.)
+Els `()`són el tipus buit, el no res, `void, zilch, nothing. Tot en Rust té un valor,
+però de vegades el valor és res. El compilador sap que això és un error comú, i en 
+realitat _ajuda_. (Qualsevol persona que haja passat temps amb el compilador C++ sabrà
+com és de _inusual_ això.)
 
-A few more examples of this no-return expression style:
+Uns pocs més exemples de l'estil d'expressió de no-retorn:
 
 ```rust
-// absolute value of a floating-point number
+// valor absolut del número real
 fn abs(x: f64) -> f64 {
     if x > 0.0 {
         x
@@ -332,7 +331,7 @@ fn abs(x: f64) -> f64 {
     }
 }
 
-// ensure the number always falls in the given range
+// assegurar-se que el número sempre cau en el rang donat
 fn clamp(x: f64, x1: f64, x2: f64) -> f64 {
     if x < x1 {
         x1
@@ -344,10 +343,10 @@ fn clamp(x: f64, x1: f64, x2: f64) -> f64 {
 }
 ```
 
-It's not wrong to use `return`, but code is cleaner without it. You will still
-use `return` for _returning early_ from a function.
+No està malament utilitzar `return`, però el codi és més net sense ell. Encara
+usareu `return` per a _returning early_ des d'una funció.
 
-Some operations can be elegantly expressed _recursively_:
+Algunes operacions poden ser elegantment expressades amb _recursivitat_:
 
 ```rust
 fn factorial(n: u64) -> u64 {
@@ -358,12 +357,11 @@ fn factorial(n: u64) -> u64 {
     }
 }
 ```
-This can be a little strange at first, and the best thing is then to use pencil and paper
-and work out some examples. It isn't usually the most _efficient_ way to do that
-operation however.
+Això pot ser una mica estrany al principi, i el millor és utilitzar llapis i paper i 
+elabor alguns exemples. No sol ser la manera més _eficient_ de fer-ho operació...
 
-Values can also be passed by _reference_. A reference is created by `&` and _dereferenced_
-by `*`.
+Els valors també es poden passar per _referència_. Una referència és creada amb `&` 
+i _dereferenciada_ amb `*`.
 
 ```rust
 fn by_ref(x: &i32) -> i32{
@@ -378,7 +376,7 @@ fn main() {
 }
 // 11 42
 ```
-What if you want a function to modify one of its arguments?  Enter _mutable references_:
+I si volem que una funció modifique un dels seus arguments?  Doncs usem _referències mutables_:
 
 ```rust
 // fun4.rs
@@ -393,42 +391,47 @@ fn main() {
     println!("res is {}", res);
 }
 ```
-This is more how C would do it than C++. You have to explicitly pass the
-reference (with `&`) and explicitly _dereference_ with `*`. And then throw in `mut`
-because it's not the default. (I've always felt that C++ references are
-too easy to miss compared to C.)
+Així és més com ho faria C que C++. Cal que passem explícitament la referència 
+(amb `&`) i explícitament _dereferenciem_ amb `*`. I llavors llançar `mut` perquè 
+no és per defecte. (Sempre he sentit que les referències C++ són massa fàcil de
+perdre en comparació amb C.)
 
-Basically, Rust is introducing some _friction_ here, and not-so-subtly pushing
-you towards returning values from functions directly.  Fortunately, Rust has
-powerful ways to express things like "operation succeeded and here's the result"
-so `&mut` isn't needed that often. Passing by reference is important when we have a
-large object and don't wish to copy it.
+Bàsicament, Rust està introduint una mica de _fricció_ ací, i no tan subtilment 
+empenyent-nos cap al retorn directe de valors de funcions. Afortunadament, Rust té
+poderoses maneres d'expressar coses com "operation succeeded and here's the result".
+Per tant, `&mut` no és necessari tan sovint. Passar per referència és important quan
+tenim un objecte gran i no voleu copiar-lo.
 
-The type-after-variable style applies to `let` as well, when you really want to nail
-down the type of a variable:
+L'estil variable-rere-tipus també s'aplica a `let`, quan realment voleu precisar el 
+tipus de variable:
 
 ```rust
 let bigint: i64 = 0;
 ```
 
-## Learning Where to Find the Ropes
+## Aprenent on trobar les cordes
 
-It's time to start using the documentation. This will be installed on your machine,
-and you can use `rustup doc --std` to open it in a browser.
+És hora de començar a usar la documentació. Aquesta s'haurà instal·lat a la nostra 
+màquina, i la podrem usar amb la comanda de terminal `rustup doc --std` que ens
+obrirà automàticament una finestra del navegador.
 
-Note the _search_ field at the top, since this
-is going to be your friend; it operates completely offline.
+Fixeu-se en el camp _search_ de la part superior, ja que aquest serà el nostre amic; 
+Funciona completament fora de línia.
 
-Let's say we want to see where the mathematical
-functions are, so search for 'cos'. The first two hits show it defined for both
-single and double-precision floating point numbers.  It is defined on the
-_value itself_ as a method, like so:
+Suposem que volem veure on són les funcions matemàtiques, així que cerqueu 'cos'. Les
+dos primeres coincidènices mostren que està definida per a tots dos nombres reals i de 
+doble precisió. Està definida sobre el _value itself_ com a mètode, així:
 
 ```rust
 let pi: f64 = 3.1416;
 let x = pi/2.0;
 let cosine = x.cos();
 ```
+
+
+
+
+
 And the result will be sort-of zero; we obviously need a more authoritative source
 of pi-ness!
 
