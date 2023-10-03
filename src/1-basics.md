@@ -428,18 +428,13 @@ let x = pi/2.0;
 let cosine = x.cos();
 ```
 
+I el resultat serà una espècie de zero; Òbviament, necessitarem una font més autoritzada.
 
+(Perquè necessitarem un tipus explícit `f64`? Doncs perque sense ell, la constant podria ser
+de tipus `f32`o `f64`, i aquestes tipus són ben diferents.)
 
-
-
-And the result will be sort-of zero; we obviously need a more authoritative source
-of pi-ness!
-
-(Why do we need an explicit `f64` type? Because without it, the constant could
-be either `f32` or `f64`, and these are very different.)
-
-Let me quote the example given for `cos`, but written as a complete program
-( `assert!` is a cousin of `assert_eq!`; the expression must be true):
+Permeteu-me citar l'exemple donat per `cos`, però escrit com un programa complet (`assert!` 
+és un cosí de `assert_eq!`; l'expressió ha de ser certa):
 
 ```rust
 fn main() {
@@ -450,9 +445,13 @@ fn main() {
     assert!(abs_difference < 1e-10);
 }
 ```
-`std::f64::consts::PI` is a mouthful! `::` means much the same as it does in C++,
-(often written using '.' in other languages) - it is a _fully qualified name_. We get
-this full name from the second hit on searching for `PI`.
+`std::f64::consts::PI` és un embarbussament! `::` significa el mateix que en C++,
+(sovint s'escriu usant '.' en altres llenguatges) - és un nom _fully qualified name_. Així
+aconseguim aquest nom complet per la segona pista en la recerca de `PI`.
+
+
+
+
 
 Up to now, our little Rust programs have been free of all that `import` and
 `include` stuff that tends to slow down the discussion of 'Hello World' programs.
