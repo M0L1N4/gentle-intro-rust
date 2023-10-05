@@ -543,19 +543,16 @@ excepte per dos importants diferències - les _slices_ mantenen la traçabilitat
 seva grandària (i entraran en pànic si intentem accedir fora dels seus límits) i tenim
 que dir explícitament que volem passar un arrai com a un _slice_ usant l'operador `&`.
 
+Un programador de C té en ment `&` com una 'adreça de'; però un programador de Rust ho 
+veu com un 'prèstec'. Aquesta serà la paraula clau aprenent Rust. Prestar és el nom donat
+a un patró comú en programació; com cada vegada que passem alguna cosa per referència (com 
+passa gairebé sempre en els llenguatges dinàmics) o passem un punter en C. Qualsevol cosa
+prestada continua pertanyent al propietari original.
 
+## Fent porcions i tallant a daus
 
-
-A C programmer pronounces `&` as 'address of'; a Rust programmer pronounces it
-'borrow'. This is going to be the key word when learning Rust. Borrowing is the name
-given to a common pattern in programming; whenever you pass something by reference
-(as nearly always happens in dynamic languages) or pass a pointer in C. Anything
-borrowed remains owned by the original owner.
-
-## Slicing and Dicing
-
-You cannot print out an array in the usual way with `{}` but you can do a _debug_
-print with `{:?}`.
+No podem imprimir un arrai de la manera usual amb `{}`, però podem fer un _debug_
+imprimint amb `{:?}`.
 
 ```rust
 // array3.rs
@@ -571,7 +568,7 @@ fn main() {
 }
 ```
 
-Which gives:
+El qual ens dona:
 
 ```
 ints [1, 2, 3]
@@ -579,18 +576,18 @@ floats [1.1, 2.1, 3.1]
 strings ["hello", "world"]
 ints_ints [[1, 2], [10, 20]]
 ```
+Per tant, els arrais d'arrais no són un problema; però la cosa més important és que un
+arrai conté valors de _només un tipus_. Els valors en un arrai estàn un al costat de 
+l'altre en memòria, per tant és _molt_ eficient el seu accés.
 
-So, arrays of arrays are no problem, but the important thing is that an array contains
-values of _only one type_.  The values in an array are arranged next to each other
-in memory so that they are _very_ efficient to access.
-
-If you are curious about the actual types of these variables, here is a useful trick.
-Just declare a variable with an explicit type which you know will be wrong:
+Si teniu curiositat pels tipus actuals d'aquestes variables, ací trobareu un truquet
+molt útil. Tant sols declara una variable amb un tipus explícit que sàpigues que és 
+incorrecte:
 
 ```rust
 let var: () = [1.1, 1.2];
 ```
-Here is the informative error:
+Ací està l'error ben ecplicadet:
 
 ```
 3 |     let var: () = [1.1, 1.2];
@@ -601,14 +598,14 @@ Here is the informative error:
 ```
 (`{float}` means 'some floating-point type which is not fully specified yet')
 
-Slices give you different _views_ of the _same_ array:
+_Slices_ ens dona diferents _views_ del _mateix_ arrai:
 
 ```rust
 // slice1.rs
 fn main() {
     let ints = [1, 2, 3, 4, 5];
     let slice1 = &ints[0..2];
-    let slice2 = &ints[1..];  // open range!
+    let slice2 = &ints[1..];  // rang obert!
 
     println!("ints {:?}", ints);
     println!("slice1 {:?}", slice1);
@@ -622,25 +619,24 @@ slice1 [1, 2]
 slice2 [2, 3, 4, 5]
 ```
 
-This is a neat notation which looks similar to Python slices but with a big difference:
-a copy of the data is never made.  These slices all _borrow_ their data from their
-arrays. They have a very intimate relationship with that array, and Rust spends a lot
-of effort to make sure that relationship does not break down.
+Aquesta és una notació ordenada que s'asembla a lade Python però amb grans diferències:
+no es fa mai una còpia de les dades. Tots aquests _slices_ presten les seves dades des
+del seu arrai. Ells tenen una molt intima relació amb l'arrai, i Rust utilitza molt 
+d'esforç en assegurar que la relació no es trenque.
 
-## Optional Values
+## Valors opcionals
 
-Slices, like arrays, can be _indexed_. Rust knows the size of an array at
-compile-time, but the size of a slice is only known at run-time. So `s[i]` can
-cause an out-of-bounds error when running and will _panic_.  This is really not
-what you want to happen - it can be the difference between a safe launch abort and
-scattering pieces of a very expensive satellite all over Florida. And there are
-_no exceptions_.
+Els _slices_, com els arrais, poden _indexar-se_. Rust coneix la grandària de l'arrai en
+temps de compilació, però la grandària d'un _slice_ és només coneguda en temps d'execució.
+Per tant `s[i]` pot causar un _out of bounds error_ quan s'executa. Açò realment no volem
+que passe - esta pot ser la diferència entre un abortament de llançament segur i escampar
+peces d'un satèl·lit molt car per tota Florida. I _no hi ha exepcions_.
 
-Let that sink in, because it comes as a shock. You cannot wrap dodgy-may-panic
-code in some try-block and 'catch the error' - at least not in a way you'd want to use
-every day. So how can Rust be safe?
+Deixa que s'acomode la idea, perquè és bastant xocant. No podem envoltar un codi
+_dodgy-may-panic_ en un bloc tru-catch i atrapar l'error - com a mínim no de la manera en
+la que volem usar-ho a diari. Llavors, com podem estar segurs en Rust?
 
-There is a slice method `get` which does not panic. But what does it return?
+Aquest és un mètode _slice_ que no espanta. Però què retornar?
 
 ```rust
 // slice2.rs
@@ -656,12 +652,11 @@ fn main() {
 // first Some(1)
 // last None
 ```
+`last`falla (hem oblidat la indexació basada en zero), però retorna una cosa anomenada `None`.
+`first`funciona, però apareix com a un valor embolicat en `Some`. Benvinguts als `tipus d'opcions`!
+Aquestes poden ser `Some`o `None`.
 
-`last` failed (we forgot about zero-based indexing), but returned something called `None`.
-`first` is fine, but appears as a value wrapped in `Some`.  Welcome to the `Option`
-type!  It may be _either_ `Some` or `None`.
-
-The `Option` type has some useful methods:
+Els tipus d'`opcions` tenen alguns mètodes ben útils:
 
 ```rust
     println!("first {} {}", first.is_some(), first.is_none());
@@ -672,8 +667,8 @@ The `Option` type has some useful methods:
 // last false true
 // first value 1
 ```
-If you were to _unwrap_ `last`, you would get a panic. But at least you can call
-`is_some` first to make sure - for instance, if you had a distinct no-value default:
+Si heguerem _desembolicat_ `last, haguerem obtés un panic error. Però com a mínim podem cridar
+`is_some` primer per assegurar-nos - per exemple, si teníem un valor diferent per defecte:`
 
 ```rust
     let maybe_last = slice.get(5);
@@ -683,8 +678,11 @@ If you were to _unwrap_ `last`, you would get a panic. But at least you can call
         -1
     };
 ```
-Note the `*` - the precise type inside the `Some` is `&i32`, which is a reference. We need
-to dereference this to get back to a `i32` value.
+Cal tindre en compte el símbol `*` - el tipus precís de `Some` és `&i32`, que és una referècia.
+Necessitem desreferenciar-ho per obtenir un valor en `i32.
+
+
+
 
 Which is long-winded, so there's a shortcut - `unwrap_or` will return the value it
 is given if the `Option` was `None`. The types must match up - `get` returns
