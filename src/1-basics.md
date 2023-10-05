@@ -446,16 +446,12 @@ fn main() {
 }
 ```
 `std::f64::consts::PI` és un embarbussament! `::` significa el mateix que en C++,
-(sovint s'escriu usant '.' en altres llenguatges) - és un nom _fully qualified name_. Així
-aconseguim aquest nom complet per la segona pista en la recerca de `PI`.
+(sovint s'escriu usant '.' en altres llenguatges) - és un nom _fully qualified_. Així
+aconseguim aquest nom complet per la segona pista en la recerca de la constant `PI`.
 
-
-
-
-
-Up to now, our little Rust programs have been free of all that `import` and
-`include` stuff that tends to slow down the discussion of 'Hello World' programs.
-Let's make this program more readable with a `use` statement:
+Fins ara, els nostres petits programes de Rust han estat lliures de tots aquests 
+ìmport` i ìnclude`, ítems que tendeixen a alentir la representació dels programes 'Hello World'.
+Anem a fer aquest programa més llegible amb la sentència ùse`:
 
 ```rust
 use std::f64::consts;
@@ -468,14 +464,13 @@ fn main() {
     assert!(abs_difference < 1e-10);
 }
 ```
-Why haven't we needed to do this up to now?
-This is because Rust helpfully makes a lot of basic functionality visible without
-explicit `use` statements through the Rust _prelude_.
+Per què no ho hem necessitat fins ara? Això es perquè Rust fa visible moltes 
+funcionalitats bàsiques sense explicitar la sentència `use` a través del Rust _prelude_.
 
-## Arrays and Slices
+## Arrais i Porcions
 
-All statically-typed languages have _arrays_, which are values packed nose to tail
-in memory. Arrays are _indexed_ from zero:
+Tot llenguatge tipat estàtic té _arrays_, els quals són valors empaquetats de dalt a abaix
+en memporia. Els arrais estàn _indexats_ des de zero:
 
 ```rust
 // array1.rs
@@ -491,7 +486,7 @@ fn main() {
 }
 ```
 
-And the output is:
+I el output és:
 
 ```
 first 10
@@ -502,27 +497,26 @@ first 10
 length 4
 ```
 
-In this case, Rust knows _exactly_ how big the array is and if you try to
-access `arr[4]` it will be a _compile error_.
+En aquest cas, Rust coneix _exactament_ com de gran és l'arrrai, i si podem
+provar d'accedir a `arr[4]` obtindrem un _error de compilació_.
 
-Learning a new language often involves _unlearning_ mental habits from languages
-you already know; if you are a Pythonista, then those brackets say `List`. We will
-come to the Rust equivalent of `List` soon, but arrays are not the droids you're looking
-for; they are _fixed in size_. They can be _mutable_ (if we ask nicely) but you
-cannot add new elements.
+Aprendre un nou llenguatge sovint implica _desaprendre_ hàbits adquirits d'altres
+llenguatges ja sabuts; si forem una Pitonisa, llavors aquests parentesis dirien `List`.
+Veurem l'equivalent en Rust de `List`ben aviat, però els arrais no són androids que anem
+cercant; aquests són de _grandària prefixada_. També poden ser _mutables_ (si els ho
+demanem amablement), però no podrem afegir-hi nou elements.
 
-Arrays are not used that often in Rust, because the type of an array includes its
-size.  The type of the array in the example is
-`[i32; 4]`; the type of `[10, 20]` would be `[i32; 2]` and so forth: they
-have _different types_.  So they are bastards to pass around as
-function arguments.
+Els arrais no s'usen molt sovint en Rust, perquè aquest tipus de dada inclou definir la
+grandària. El tipus d'arrai en l'exemple és `[i32; 4]`; el tipus de `[10, 20]` podria ser
+`[i32; 2]` i així successivament: aquests tenen _diferents tipus_. Per tant són uns
+punyeters per passa-los com a arguments de funcions.
 
-What _are_ used often are _slices_. You can think of these as _views_ into
-an underlying array of values. They otherwise behave very much like an array, and
-_know their size_, unlike those dangerous animals C pointers.
+El _que s'usa_ més freqüentment són els _slices_ (porcions). Podem veure aquestes com a
+_views_ en una gamma subjacent de valors. Altrament, es comporten molt com un arrai, i 
+_saben la seva grandària_, a diferència d'aquells perillosos animals de C anomenats punters.
 
-Note two important things here - how to write a slice's type, and that
-you have to use `&` to pass it to the function.
+Hem de tindre en compte dues coses importants ací: com escriure el tipus d'una porció, i que
+hem d'utilitzar `&` per passar-ho a la funció.
 
 ```rust
 // array2.rs
@@ -543,11 +537,14 @@ fn main() {
 }
 ```
 
-Ignore the code of `sum` for a while, and look at `&[i32]`. The relationship between
-Rust arrays and slices is similar to that between C arrays and pointers, except for
-two important differences - Rust slices keep track of their size (and will
-panic if you try to access outside that size) and you have to explicitly say that
-you want to pass an array as a slice using the `&` operator.
+Ignorem el codi `sum`per un temps, i mirem el `&[i32]`. La relació entre els arrais i
+els slices en Rust són similars a les que hi ha entre els arrais en C i els punters,
+excepte per dos importants diferències - les _slices_ mantenen la traçabilitat de la
+seva grandària (i entraran en pànic si intentem accedir fora dels seus límits) i tenim
+que dir explícitament que volem passar un arrai com a un _slice_ usant l'operador `&`.
+
+
+
 
 A C programmer pronounces `&` as 'address of'; a Rust programmer pronounces it
 'borrow'. This is going to be the key word when learning Rust. Borrowing is the name
